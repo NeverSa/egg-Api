@@ -8,12 +8,19 @@ module.exports = appInfo => {
 
   // add your config here
   config.middleware = [];
-  config.security = {
-    csrf: false
-  }
+
   config.mongoose = {
     url: 'mongodb://127.0.0.1/ele',
     options: {}
+  };
+
+  config.security = {
+    csrf: false,
+  };
+
+  config.cors = {
+    origin: '*',
+   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
   };
   return config;
 };
