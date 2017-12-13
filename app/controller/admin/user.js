@@ -12,6 +12,6 @@ class UserController extends Controller {
     const result=yield ctx.service.admin.getUserInfo();
     ctx.body = result;
     ctx.status = 200;
-  }
+  } 
 }
 module.exports = UserController;

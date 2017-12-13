@@ -16,11 +16,22 @@ module.exports = appInfo => {
 
   config.security = {
     csrf: false,
+    methodnoallow: {
+      enable: false
+    }, 
   };
 
   config.cors = {
-    origin: '*',
-   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+    // - {String|Function(ctx)} origin `Access-Control-Allow-Origin`, default is request Origin header
+    // *  - {String|Array} allowMethods `Access-Control-Allow-Methods`, default is 'GET,HEAD,PUT,POST,DELETE,PATCH'
+    // *  - {String|Array} exposeHeaders `Access-Control-Expose-Headers`
+    // *  - {String|Array} allowHeaders `Access-Control-Allow-Headers`
+    // *  - {String|Number} maxAge `Access-Control-Max-Age` in seconds
+    // *  - {Boolean} credentials `Access-Control-Allow-Credentials`
+    // *  - {Boolean} keepHeadersOnError Add set headers to `err.header` if an error is thrown
+   origin: 'http://localhost:8002',//此处要实现跨域session必须设置域名不能设置成*
+   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+   credentials:true,
   };
   return config;
 };
