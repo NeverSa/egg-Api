@@ -8,7 +8,7 @@ module.exports = appInfo => {
 
   // add your config here
   config.middleware = [];
-
+//配置mongodb的链接地址
   config.mongoose = {
     url: 'mongodb://127.0.0.1/ele',
     options: {}
@@ -29,7 +29,7 @@ module.exports = appInfo => {
     // *  - {String|Number} maxAge `Access-Control-Max-Age` in seconds
     // *  - {Boolean} credentials `Access-Control-Allow-Credentials`
     // *  - {Boolean} keepHeadersOnError Add set headers to `err.header` if an error is thrown
-   origin: 'http://localhost:8002',//此处要实现跨域session必须设置域名不能设置成*
+   origin: 'http://127.0.0.1:9010',//此处要实现跨域session必须设置域名不能设置成*
    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
    credentials:true,
   };
