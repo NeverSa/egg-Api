@@ -21,5 +21,12 @@ class UserController extends Controller {
     ctx.body = result;
     ctx.status = 200;
   }
+  * test(){
+    const {ctx} = this; 
+    const result=yield ctx.service.pro.getindex(ctx.request.body);
+    ctx.body = result;
+    ctx.status = 200;
+  }
+
 }
 module.exports = UserController;

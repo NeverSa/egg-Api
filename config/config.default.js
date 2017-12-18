@@ -7,13 +7,22 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1512990481036_3391';
 
   // add your config here
-  config.middleware = [];
+  config.middleware = ["sign"];
 //配置mongodb的链接地址
   config.mongoose = {
     url: 'mongodb://127.0.0.1/ele',
     options: {}
   };
 
+  config.sign={
+    AccessKeyId:"10e67a7c-3457d234-57d1669e-7220b",
+    SecretKey:"d17a1e0c-91ac1670-cab8b927-64265",
+    SignatureMethod:"HmacSHA256",
+    SignatureVersion:2,
+    Timestamp:"",
+    baseUrl:"https://api.huobi.pro",
+    dome:"api.huobi.pro"
+  };
   config.security = {
     csrf: false,
     methodnoallow: {
