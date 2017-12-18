@@ -1,5 +1,6 @@
 const Subscription = require('egg').Subscription;
 const sigin =require("../middleware/sign");
+const moment = require('moment');
 const option={
   
 }
@@ -14,7 +15,14 @@ class UpdateCache extends Subscription {
 
   // 获取某个币种的K线图
   async subscribe() {
-   this.app.sigin()
+    const option={
+      apihost:"/v1s",
+      methods:"GET", 
+      Timestamp:moment.utc().format('YYYY-MM-DDTHH:mm:ss')||"",
+      body:{},
+      prams:{},
+    }
+    this.app.sigin(option)
     const res = await this.ctx.curl('http://www.api.com/cache', {
     });
     this.ctx.app.cache = res.data;
