@@ -13,21 +13,19 @@ const defaultoption={
 module.exports = function fn(option) {
 
     let signobj={
-        //以下参数各个接口不同必填
-        apihost:option.apihost||"",
-        methods:option.methods||"", 
+        AccessKeyId:defaultoption.AccessKeyId,
+        SignatureMethod:defaultoption.SignatureMethod,
+        SignatureVersion:defaultoption.SignatureVersion,
         Timestamp:moment.utc().format('YYYY-MM-DDTHH:mm:ss')||"",
-        body:{},
-        prams:{},
     }
-    signobj=Object.assign(defaultoption,signobj)
+
     let newsignobj={},
-    usrstr=signobj.methods+"\n"+signobj.apihost+"\n"+signobj.dome,
+    usrstr=option.methods+"\n"+defaultoption.dome+"\n"+option.apihost+"\n",
     pramsurl="";
-    if(signobj.methods=="POST"){
-        newsignobj=Object.assign(signobj.body,signobj); 
+    if(option.methods=="POST"){
+        newsignobj=Object.assign(option.body,signobj); 
     }else{
-        newsignobj=Object.assign(signobj.prams,signobj);   
+        newsignobj=Object.assign(option.prams,signobj);   
     }
  
     newsignobj=objKeySort(newsignobj);
@@ -37,10 +35,11 @@ module.exports = function fn(option) {
         pramsurl+=i+"="+newsignobj[i]+"&"
       }
       usrstr=usrstr.substring(0,usrstr.length-1)
-      console.log(usrstr)
-      var hash = HmacSHA256(usrstr, signobj.SecretKey);
+ 
+      var hash = HmacSHA256(usrstr, defaultoption.SecretKey);
       var Signature = encodeURIComponent(CryptoJS.enc.Base64.stringify(hash));
-      let posturl=signobj.baseUrl+signobj.dome+"?"+pramsurl+"Signature="+Signature;
+      let posturl=defaultoption.baseUrl+option.apihost+"?"+pramsurl+"Signature="+Signature;
+      console.log(posturl)
       return posturl;
 }; 
 

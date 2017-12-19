@@ -7,7 +7,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1512990481036_3391';
 
   // add your config here
-  config.middleware = ["sign"];
+  config.middleware = [];
 //配置mongodb的链接地址
   config.mongoose = {
     url: 'mongodb://127.0.0.1/ele',
@@ -42,5 +42,8 @@ module.exports = appInfo => {
    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
    credentials:true,
   };
+
+
+  
   return config;
 };

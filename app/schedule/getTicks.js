@@ -1,10 +1,9 @@
+
 const Subscription = require('egg').Subscription;
-const sigin =require("../middleware/sign");
 const moment = require('moment');
-const option={
-  
-}
-class UpdateCache extends Subscription {
+
+//定时每晚0点执行获取所有币种开盘价
+class GetPrice extends Subscription {
   // 通过 schedule 属性来设置定时任务的执行间隔等配置
   static get schedule() {
     return {
@@ -15,18 +14,13 @@ class UpdateCache extends Subscription {
 
   // 获取某个币种的K线图
   async subscribe() {
-    const option={
-      apihost:"/v1s",
-      methods:"GET", 
-      Timestamp:moment.utc().format('YYYY-MM-DDTHH:mm:ss')||"",
-      body:{},
-      prams:{},
-    }
-    this.app.sigin(option)
-    const res = await this.ctx.curl('http://www.api.com/cache', {
-    });
-    this.ctx.app.cache = res.data;
+    //this.ctx.service.pro.loopbtc() 
+    //写入所有币种
+   // this.ctx.service.pro.getallsymbols()
+    //更新开盘价
+    //this.ctx.service.pro.getcloseprice()
+    console.log("开始定时")
   }
 }
 
-module.exports = UpdateCache;
+module.exports = GetPrice;
