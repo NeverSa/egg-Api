@@ -2,8 +2,8 @@ const CryptoJS = require('crypto-js');
 const HmacSHA256 = require('crypto-js/hmac-sha256')
 const moment = require('moment');
 const defaultoption={
-    AccessKeyId:"10e67a7c-3457d234-57d1669e-7220b",
-    SecretKey:"d17a1e0c-91ac1670-cab8b927-64265",
+    AccessKeyId:"20500845-f2ac9a01-b3761663-b3e77",
+    SecretKey:"f7d7df07-2932cea5-a503e1e4-dfd6d",
     SignatureMethod:"HmacSHA256",
     SignatureVersion:2,
     baseUrl:"https://api.huobi.pro",
@@ -23,7 +23,7 @@ module.exports = function fn(option) {
     usrstr=option.methods+"\n"+defaultoption.dome+"\n"+option.apihost+"\n",
     pramsurl="";
     if(option.methods=="POST"){
-        newsignobj=Object.assign(option.body,signobj); 
+         newsignobj=Object.assign(option.body,signobj); 
     }else{
         newsignobj=Object.assign(option.prams,signobj);   
     }
@@ -35,11 +35,11 @@ module.exports = function fn(option) {
         pramsurl+=i+"="+newsignobj[i]+"&"
       }
       usrstr=usrstr.substring(0,usrstr.length-1)
- 
+    
       var hash = HmacSHA256(usrstr, defaultoption.SecretKey);
       var Signature = encodeURIComponent(CryptoJS.enc.Base64.stringify(hash));
       let posturl=defaultoption.baseUrl+option.apihost+"?"+pramsurl+"Signature="+Signature;
-      console.log(posturl)
+      //console.log(posturl)
       return posturl;
 }; 
 

@@ -33,9 +33,9 @@ class WebproService extends Service {
     }
    };
    //修改单个币种开盘价
-   * editOneCoin(body){
-   const {id,price}=body; 
-   const result =yield this.ctx.model.Pro.findOneAndUpdate({"_id":id},{$set:{"closeprice":price}});
+   *editOneCoin(body){
+   const {id,closeprice,base_currency,quote_currency,symbol,buyprice}=body; 
+   const result =yield this.ctx.model.Pro.findOneAndUpdate({"_id":id},{$set:{closeprice,base_currency,quote_currency,symbol,buyprice}});
    if(result){
        return {
            success: true,
@@ -43,7 +43,19 @@ class WebproService extends Service {
          } 
     }
   };
+  
+  //新增单个币种
+  * addOneCoin(body){
+   const result =yield this.ctx.model.Pro.create(body);
+    if(result){
+      return {
+        success: true,
+        data:result
+      } 
+    }
+  };
 
+  
 
 }
 

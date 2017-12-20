@@ -3,5 +3,5 @@ module.exports = app => {
     app.router.post('/pro/delete_one_coin', "pro.index.deleteOneCoin");
     app.router.post('/pro/get_one_coin', "pro.index.getOneCoin");
     app.router.post('/pro/edit_one_coin', "pro.index.editOneCoin");
-   
+    app.router.post('/pro/add_one_coin', "pro.index.addOneCoin");
   };

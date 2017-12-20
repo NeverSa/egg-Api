@@ -28,5 +28,18 @@ class IndexController extends Controller {
     ctx.body = result;
     ctx.status = 200;
    }
+
+   //新增单个币种
+   *addOneCoin(){
+    const {ctx} = this; 
+    const result=yield ctx.service.webpro.addOneCoin(ctx.request.body)
+    ctx.body = result;
+    ctx.status = 200;
+   }
+
+
+
+ //
+
 }
 module.exports = IndexController;
