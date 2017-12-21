@@ -5,7 +5,8 @@ module.exports = app => {
       "creadt_time":{type:Date, default:Date.now},
       "symbol":{type: String},
       "low":{type: Number,default:10},
-      "height":{type: Number,default:-10}    
+      "height":{type: Number,default:-10},
+      "abled":{type:Boolean,default:true}    
     });
    
     return mongoose.model('Loopbtc', LoopbtcSchema);

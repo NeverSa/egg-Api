@@ -126,7 +126,7 @@ class ProService extends Service {
 
   //定时任务指定币种扫描
   async loopbtc(){ 
-    let suportcoin=await this.ctx.model.Loopbtc.find({});
+    let suportcoin=await this.ctx.model.Loopbtc.find({"abled":true});
     for(let key of suportcoin){
       let Percent= await this.getOneCoin(key.symbol);
       console.log(`${key.symbol}对比买入价当前涨幅为 ${Percent.height}%\n`);
